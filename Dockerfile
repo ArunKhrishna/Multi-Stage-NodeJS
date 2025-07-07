@@ -5,8 +5,9 @@ COPY package*.json ./
 RUN npm ci --omit=dev
 COPY . .
 
-# Stage 2: Runtime
-FROM node:18-alpine
+# Stage 2: Runtime (Distroless)
+FROM gcr.io/distroless/nodejs18-debian11
 WORKDIR /app
-COPY --from=builder /app ./
-CMD ["node", "src/index.js"]
+COPY --from=builder /app .
+
+CMD ["src/index.js"]
