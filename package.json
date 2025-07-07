@@ -6,6 +6,6 @@
     "start": "node src/index.js"
   },
   "dependencies": {
-    "chalk": "^5.4.1"
+    "kleur": "^4.1.5"
   }
 }
