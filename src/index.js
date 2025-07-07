@@ -1,15 +1,18 @@
 const http = require("http");
-const chalk = require("chalk");
 
 const hostname = "0.0.0.0";
 const port = 3000;
 
-const server = http.createServer((req, res) => {
+const server = http.createServer(async (req, res) => {
+  const chalk = await import('chalk');
+
   res.statusCode = 200;
   res.setHeader("Content-Type", "text/plain");
-  res.end(chalk.green("🚀 Hello from your Dockerized Node.js App!\n"));
+  res.end(chalk.default.green("🚀 Hello from your Dockerized Node.js App!\n"));
 });
 
 server.listen(port, hostname, () => {
-  console.log(chalk.blue(`✅ Server running at http://${hostname}:${port}/`));
+  import('chalk').then(chalk =>
+    console.log(chalk.default.blue(`✅ Server running at http://${hostname}:${port}/`))
+  );
 });
