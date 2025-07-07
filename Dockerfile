@@ -11,6 +11,7 @@ COPY src/ ./src
 
 # Stage 2: Runtime (Lightweight Distroless)
 FROM gcr.io/distroless/nodejs18
+
 WORKDIR /app
 
 # Copy only runtime files
